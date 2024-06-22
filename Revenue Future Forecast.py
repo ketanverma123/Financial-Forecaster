@@ -11,13 +11,13 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
 import matplotlib.pyplot as plt
 
-# Load the dataset using raw string literal
+
 data = pd.read_csv(r'C:\Users\kavin\OneDrive\financial_data.csv')
 
-# Assuming 'Company' is a column identifying each of the 12 companies
+
 unique_companies = data['Company '].unique()
 
-# Prepare future values for each company (example placeholders)
+
 future_values = {
     'AAPL': {
         'Revenue_Lag1': 1000,
@@ -130,49 +130,37 @@ future_values = {
   
 }
 
-# Iterate over each company
 for company in unique_companies:
-    # Subset data for the current company
     company_data = data[data['Company '] == company].copy()
 
-    # Create lag features for revenue
     company_data['Revenue_Lag1'] = company_data['Revenue'].shift(1)
     company_data['Revenue_Lag2'] = company_data['Revenue'].shift(2)
 
-    # Drop rows with NaN values created by lagging
     company_data.dropna(inplace=True)
 
-    # Define features and target
     features = ['Revenue_Lag1', 'Revenue_Lag2', 'Market Cap(in B USD)', 'Gross Profit', 'Net Income', 'EBITDA', 'Inflation Rate(in US)']
     target = 'Revenue'
 
     X = company_data[features]
     y = company_data[target]
 
-    # Split the data
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4, random_state=42)
 
-    # Scale the features
     scaler = StandardScaler()
     X_train_scaled = scaler.fit_transform(X_train)
     X_test_scaled = scaler.transform(X_test)
 
-    # Train the model
     model = LinearRegression()
     model.fit(X_train_scaled, y_train)
 
-    # Make predictions for the test set
     y_pred = model.predict(X_test_scaled)
 
-    # Evaluate the model
     mse = mean_squared_error(y_test, y_pred)
     print(f'Mean Squared Error for {company}: {mse}')
 
-    # Plot actual vs predicted revenue with year annotation
     plt.figure(figsize=(10, 6))
     plt.scatter(y_test, y_pred, color='blue', alpha=0.5)
 
-    # Annotate each point with the corresponding year
     for i, year in enumerate(company_data.loc[y_test.index, 'Year']):
         plt.annotate(year, (y_test.iloc[i], y_pred[i]), textcoords="offset points", xytext=(0,5), ha='center')
 
@@ -183,8 +171,6 @@ for company in unique_companies:
     plt.grid(True)
     plt.show()
 
-    # Example: Predict future revenue for the next quarter
-    # Prepare future data (assuming future values are available or placeholders)
     future_features = {
         'Revenue_Lag1': [future_values[company]['Revenue_Lag1']],
         'Revenue_Lag2': [future_values[company]['Revenue_Lag2']],
@@ -195,16 +181,12 @@ for company in unique_companies:
         'Inflation Rate(in US)': [future_values[company]['Inflation Rate(in US)']],
     }
 
-    # Convert future features to DataFrame
     future_data = pd.DataFrame(future_features)
 
-    # Scale the future features using the same scaler
     future_data_scaled = scaler.transform(future_data)
 
-    # Predict future revenue
     future_predicted_revenue = model.predict(future_data_scaled)
 
-    # Print or use future predicted revenue
     print(f"Predicted revenue for {company} for the next year: {future_predicted_revenue}")
 
 
