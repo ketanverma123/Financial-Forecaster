@@ -15,3 +15,23 @@ Flask
 Pandas
 Scikit-Learn
 Bootstrap
+Installation and Setup
+Clone the repository:
+
+Copy code
+git clone https://github.com/yourusername/financial-predictions-web-app.git
+cd financial-predictions-web-app
+Create and activate a virtual environment:
+
+Copy code
+python -m venv venv
+source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+Install the required packages:
+
+Copy code
+pip install -r requirements.txt
+Start the Flask application:
+
+Copy code
+python app.py
+Open a web browser and navigate to http://127.0.0.1:5000/ to access the application.
