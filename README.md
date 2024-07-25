@@ -35,3 +35,15 @@ Start the Flask application:
 Copy code
 python app.py
 Open a web browser and navigate to http://127.0.0.1:5000/ to access the application.
+
+financial-predictions-web-app/
+│
+├── app.py
+├── data/
+│   └── Quarterfinancial.csv
+├── models/
+│   ├── model.pkl
+│   └── label_encoder.pkl
+├── templates/
+    ├── index.html
+    └── results.html
