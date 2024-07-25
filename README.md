@@ -1,0 +1,1 @@
+This project is a web application that provides financial predictions for various companies based on historical financial data. The application uses a machine learning model to predict key financial metrics for a specified number of quarters. Users can select a company from a predefined list and input the number of future quarters for which they want predictions.
