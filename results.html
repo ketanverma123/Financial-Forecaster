@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Results</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Prediction Results</h1>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Year</th>
+                    <th>Quarter</th>
+                    <th>Company</th>
+                    <th>Revenue</th>
+                    <th>Gross Profit</th>
+                    <th>Net Income</th>
+                    <th>Earning Per Share</th>
+                    <th>EBITDA</th>
+                    <th>Share Holder Equity</th>
+                    <th>Current Ratio</th>
+                    <th>Debt/Equity Ratio</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for prediction in predictions %}
+                    <tr>
+                        <td>{{ prediction.Year }}</td>
+                        <td>{{ prediction.Quarter }}</td>
+                        <td>{{ prediction.Company }}</td>
+                        <td>{{ prediction.Revenue }}</td>
+                        <td>{{ prediction['Gross Profit'] }}</td>
+                        <td>{{ prediction['Net Income'] }}</td>
+                        <td>{{ prediction['Earning Per Share'] }}</td>
+                        <td>{{ prediction.EBITDA }}</td>
+                        <td>{{ prediction['Share Holder Equity'] }}</td>
+                        <td>{{ prediction['Current Ratio'] }}</td>
+                        <td>{{ prediction['Debt/Equity Ratio'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/" class="btn btn-secondary">Go Back</a>
+    </div>
+</body>
+</html>

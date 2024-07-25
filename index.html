@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Predictions</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Financial Predictions</h1>
+        <form action="/predict" method="post">
+            <div class="form-group">
+                <label for="company">Select Company:</label>
+                <select class="form-control" id="company" name="company" required>
+                    {% for company in company_names %}
+                        <option value="{{ company }}">{{ company }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="num_quarters">Number of Quarters to Predict:</label>
+                <input type="number" class="form-control" id="num_quarters" name="num_quarters" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Predict</button>
+        </form>
+    </div>
+</body>
+</html>
