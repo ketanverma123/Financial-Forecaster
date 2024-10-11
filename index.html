@@ -2,28 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Financial Predictions</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
+
 <body>
-    <div class="container">
-        <h1 class="mt-5">Financial Predictions</h1>
-        <form action="/predict" method="post">
-            <div class="form-group">
-                <label for="company">Select Company:</label>
-                <select class="form-control" id="company" name="company" required>
-                    {% for company in company_names %}
-                        <option value="{{ company }}">{{ company }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="num_quarters">Number of Quarters to Predict:</label>
-                <input type="number" class="form-control" id="num_quarters" name="num_quarters" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Predict</button>
-        </form>
-    </div>
+<div class="container">
+    <h1 class="mt-5">Financial Predictions</h1>
+    <form action="/predict" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="company">Enter Company Name (Optional):</label>
+            <input type="text" class="form-control" id="company" name="company">
+            <small class="form-text text-muted">Leave blank to predict for all companies in the dataset.</small>
+        </div>
+        <div class="form-group">
+            <label for="num_quarters">Number of Quarters to Predict:</label>
+            <input type="number" class="form-control" id="num_quarters" name="num_quarters" required>
+        </div>
+        <div class="form-group">
+            <label for="file">Upload Your Own File (Optional):</label>
+            <input type="file" class="form-control" id="file" name="file">
+            <small class="form-text text-muted">Upload a CSV file with the required columns.</small>
+        </div>
+        <button type="submit" class="btn btn-primary">Predict</button>
+    </form>
+</div>
 </body>
 </html>
