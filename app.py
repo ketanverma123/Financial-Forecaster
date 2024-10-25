@@ -18,10 +18,8 @@ def load_and_process_data(file_path=None, data_frame=None):
     else:
         return None, None
 
-    # Correcting the column name
     data = data.rename(columns={'Company ': 'Company'})
 
-    # Selecting the required columns
     required_columns = [
         'Year', 'Quarter', 'Company', 'Revenue', 'Gross Profit', 'Net Income',
         'Earning Per Share', 'EBITDA', 'Share Holder Equity', 'Current Ratio',
@@ -32,7 +30,7 @@ def load_and_process_data(file_path=None, data_frame=None):
     except KeyError:
         return None, None
 
-    # Handling missing values
+
     imputer = SimpleImputer(strategy='mean')
     data_imputed_numeric = pd.DataFrame(
         imputer.fit_transform(data_selected.iloc[:, 3:]),
@@ -40,16 +38,16 @@ def load_and_process_data(file_path=None, data_frame=None):
     )
     data_imputed = pd.concat([data_selected[['Year', 'Quarter', 'Company']], data_imputed_numeric], axis=1)
 
-    # Encoding categorical variable 'Company'
+
     label_encoder = LabelEncoder()
     data_imputed['CompanyEncoded'] = label_encoder.fit_transform(data_imputed['Company'])
 
     return data_imputed, label_encoder
 
-# Load the default dataset
+
 default_data_imputed, default_label_encoder = load_and_process_data(file_path='Quarterfinancial.csv')
 
-# Function to get the next quarter
+
 def get_next_quarter(year, quarter, increment=1):
     new_quarter = quarter + increment
     year_increment = (new_quarter - 1) // 4
