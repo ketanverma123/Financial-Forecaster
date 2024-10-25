@@ -6,6 +6,16 @@ User-Friendly Interface: Built with Flask and Bootstrap to ensure a responsive a
 Company Selection: Users can select a company from a list of available companies.
 Quarterly Predictions: The application provides financial predictions for multiple quarters based on historical data.
 Visual Results: Predictions are displayed in a clean and organized table format for easy interpretation.
+
+v3 Updates:
+In this version, the tool has been updated with the following features:
+
+New Financial Indicators: Now includes Market Cap and Inflation Rate (in US) as part of the financial forecasting.
+Improved Performance Suggestions: The suggestion system has been enhanced to offer more targeted recommendations based on financial trends.
+Interactive Unit Conversion: The ability to switch between Billions, Millions, and Hundreds of Thousands for financial metrics.
+UI Improvements: Cleaner, more professional user interface with improved formatting for instructions and feedback.
+Back Button Navigation: Users can now easily navigate back to the landing page from the results page.
+
 How It Works
 Data Preparation: The application uses historical financial data from a CSV file. The data is cleaned and preprocessed to handle missing values and encode categorical variables.
 Model Training: A Random Forest model is trained to predict multiple financial metrics simultaneously.
